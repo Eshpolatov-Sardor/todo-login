@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
-
-interface Todo {
-  title: string;
-  description: string;
-  active: boolean;
-}
+import type { Todo } from './TodoList.vue';
 
 const props = defineProps<{
   todos: Todo[]
