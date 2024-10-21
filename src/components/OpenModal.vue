@@ -1,42 +1,46 @@
 <script setup lang="ts">
-import { ref, defineEmits } from 'vue';
+import { ref, defineEmits } from "vue";
 
-const title=ref("")
-const description=ref("")
-const emit = defineEmits(['addtodo', 'closemodal']);
+const title = ref<string>("");
+const description = ref<string>("");
+const emit = defineEmits(["addtodo", "closemodal"]);
 
-const submit = () => {
-  if(title.value!=="" && description.value!==""){
-    emit('addtodo', { title: title.value, description: description.value, active: false });
-    title.value = '';
-    description.value = '';
-    emit('closemodal');
+function submit() {
+  if (title.value !== "" && description.value !== "") {
+    emit("addtodo", {
+      title: title.value,
+      description: description.value,
+      active: false,
+    });
+    title.value = "";
+    description.value = "";
+    emit("closemodal");
+  } else if (title.value !== "" && description.value === "") {
+    alert("descriptionga ham malumot kiriting");
+  } else {
+    alert("titlega ham malumot kiriting");
   }
-  else if(title.value!=="" && description.value===""){
-    alert("descriptionga ham malumot kiriting")
-  }
-  else{
-    alert("titlega ham malumot kiriting")
-  }
-};
+}
 </script>
 
 <template>
-  <div class="bg-white p-5 rounded shadow-lg absolute mt-5 -ml-28">
+  <div class="bg-white p-5 rounded shadow-lg absolute mt-28 -ml-18">
     <form @submit.prevent="submit">
-      <label for="title" class="block font-semibold mb-2">Title:</label>
+      <label for="title" class="block font-semibold mb-2 text-red-600">Title:</label>
       <input
         type="title"
         v-model="title"
-        class="border p-2 w-full rounded mb-4"
+        class="border p-2 w-full rounded mb-4 text-red-600"
         placeholder="Enter Title"
       />
 
-      <label for="description" class="block font-semibold mb-2">Description:</label>
+      <label for="description" class="block font-semibold mb-2 text-red-600"
+        >Description:</label
+      >
       <input
         type="title"
         v-model="description"
-        class="border p-2 w-full rounded mb-4"
+        class="border p-2 w-full rounded mb-4 text-red-600"
         placeholder="Enter Description"
       />
 
